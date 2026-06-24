@@ -1,0 +1,25 @@
+const {
+  CREATE_PROJECT,
+  GET_USER_PROJECTS,
+  GET_SINGLE_PROJECT,
+  UPDATE_PROJECT,
+  DELETE_PROJECT,
+} = require("../../module/project/endPoints");
+const {
+  CREATE_TASKS,
+  GET_PROJECT_TASKS,
+  UPDATE_TASK,
+  FILTER_TASKS,
+} = require("../../module/task/endPoints");
+
+module.exports = [
+  CREATE_PROJECT,
+  GET_USER_PROJECTS,
+  GET_SINGLE_PROJECT,
+  UPDATE_PROJECT,
+  DELETE_PROJECT,
+  CREATE_TASKS,
+  GET_PROJECT_TASKS,
+  UPDATE_TASK,
+  FILTER_TASKS,
+];
