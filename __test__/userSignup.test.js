@@ -63,3 +63,41 @@ test("user signup success", async () => {
     password: "hashed_password",
   });
 });
+
+// case if we found user
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+test("should return conflict if email already exists", async () => {
+  const req = {
+    body: {
+      name: "Tarek Mohamed",
+      email: "tarek@test.com",
+      password: "tarek@123",
+    },
+  };
+
+  const res = {
+    status: jest.fn().mockReturnThis(),
+    json: jest.fn(),
+  };
+
+  userModel.findOne.mockResolvedValue({
+    _id: "1",
+    name: "Tarek Mohamed",
+    email: "tarek@test.com",
+  });
+
+  await userSignUpFun(req, res);
+
+  expect(res.status).toHaveBeenCalledWith(409);
+
+  expect(res.json).toHaveBeenCalledWith({
+    message: "User Is Already Exist..!",
+  });
+
+  expect(jwt.sign).not.toHaveBeenCalled();
+  expect(sendEmail).not.toHaveBeenCalled();
+  expect(bcrypt.hash).not.toHaveBeenCalled();
+  expect(userModel.insertMany).not.toHaveBeenCalled();
+});
