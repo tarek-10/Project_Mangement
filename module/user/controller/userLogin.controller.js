@@ -19,7 +19,7 @@ const userLoginFun = async (req, res) => {
 
       if (match) {
         res.status(StatusCodes.OK).json({
-          message: "sucess",
+          message: "success",
           token,
           data: {
             _id: user._id,

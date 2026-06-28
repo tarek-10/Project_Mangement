@@ -99,3 +99,47 @@ Authentication is based on JWT.
 Passwords are securely hashed using bcrypt.
 MongoDB is used as the primary database.
 Seed files are included for testing and development.
+
+//testing section
+
+## Unit Testing
+
+This project includes unit tests using **Jest**.
+
+### Covered Test Cases
+
+#### User Signup
+
+- Register user successfully.
+- Return `409 Conflict` if the email already exists.
+- Verify `bcrypt.hash` is called correctly.
+- Verify `jsonwebtoken.sign` is called correctly.
+- Verify email sending function is called.
+- Verify user is inserted into the database.
+
+#### User Login
+
+- Login successfully.
+- Verify user lookup by email.
+- Verify password using `bcrypt.compare`.
+- Verify JWT token generation.
+- Verify successful login response.
+
+### Run Tests
+
+```bash
+npm test
+```
+
+or
+
+```bash
+npm run test
+```
+
+### Technologies Used
+
+- Jest
+- Mock Functions (`jest.mock()`)
+- Mock Return Values (`mockResolvedValue`, `mockReturnValue`)
+- Assertions (`expect`, `toHaveBeenCalledWith`, `not.toHaveBeenCalled`)
